@@ -833,3 +833,5 @@ function pressbooks_theme_ebook_hacks( $hacks ) {
 	return $hacks;
 }
 add_filter( 'pb_epub_hacks', 'pressbooks_theme_ebook_hacks' );
+
+require( 'pbdropcap-editor-button/pbdropcap.php' );
