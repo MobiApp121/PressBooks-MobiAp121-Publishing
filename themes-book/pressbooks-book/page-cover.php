@@ -32,7 +32,7 @@ if (have_posts()) the_post();
       					?>
       					<?php if ($authors): ?>
       					<div class="author-cover">
-      					<h4><?php _e('Authors(s)', 'pressbooks'); ?></h4>
+      					<h4><?php _e('Author(s)', 'pressbooks'); ?></h4>
       					<?php foreach ($authors as $author): ?>
       						<h3><?php echo $author->post_title; ?></h3>
       						<?php $the_content = apply_filters('the_content', $author->post_content); ?>
