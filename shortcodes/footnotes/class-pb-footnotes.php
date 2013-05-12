@@ -146,7 +146,10 @@ class Footnotes {
 		if ( ! current_user_can( 'edit_posts' ) && ! current_user_can( 'edit_pages' ) ) {
 			return;
 		}
-
+		
+		wp_enqueue_script('editor', get_template_directory_uri() . '/footnote.js');
+		wp_enqueue_script('editor', get_template_directory_uri() . '/ftnref-convert.js');
+		wp_enqueue_script('editor', get_template_directory_uri() . '/quicktags.js');
 		if ( get_user_option( 'rich_editing' ) == 'true' ) {
 
 			wp_localize_script( 'editor', 'PB_FootnotesToken', array(
