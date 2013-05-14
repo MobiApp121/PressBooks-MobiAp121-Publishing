@@ -336,6 +336,7 @@ class Book {
 			// if the part for this chapter changed, set new part for chapter
 			// and new order for this part
 			if ( $newPart != $oldPart ) {
+
 				$my_post = array();
 				$my_post['ID'] = $id;
 				$my_post['post_parent'] = $newPart;
@@ -347,6 +348,7 @@ class Book {
 							foreach ( $values as $position => $id ) {
 								$position += 1; // array is 0-indexed, but we want it to start from 1
 								$wpdb->update( $wpdb->posts, array( 'menu_order' => $position ), array( 'ID' => $id ) );
+								clean_post_cache( $id );
 							}
 						}
 					}
@@ -360,6 +362,7 @@ class Book {
 						foreach ( $values as $position => $id ) {
 							$position += 1; // array is 0-indexed, but we want it to start from 1
 							$wpdb->update( $wpdb->posts, array( 'menu_order' => $position ), array( 'ID' => $id ) );
+							clean_post_cache( $id );
 						}
 					}
 				}
@@ -391,6 +394,7 @@ class Book {
 						foreach ( $values as $position => $id ) {
 							$position += 1;
 							$wpdb->update( $wpdb->posts, array( 'menu_order' => $position ), array( 'ID' => $id ) );
+							clean_post_cache( $id );
 						}
 					}
 				}
@@ -418,6 +422,7 @@ class Book {
 						foreach ( $values as $position => $id ) {
 							$position += 1;
 							$wpdb->update( $wpdb->posts, array( 'menu_order' => $position ), array( 'ID' => $id ) );
+							clean_post_cache( $id );
 						}
 					}
 				}
@@ -521,7 +526,7 @@ class Book {
 	 * Ensures this chapter/part/front matter has a "menu_order" when it is saved
 	 *
 	 * @param integer $pid  Post ID
-	 * @param object  $post Post
+	 * @param \WP_Post $post Post
 	 *
 	 * @return bool
 	 */
@@ -557,8 +562,10 @@ class Book {
 					 SET {$wpdb->posts}.menu_order = {$new}
 				   WHERE {$wpdb->posts}.ID = {$post->ID} ";
 
-			// will return false on failure
-			return $wpdb->query( $query );
+			$success = $wpdb->query( $query );
+			clean_post_cache( $post );
+
+			return $success;
 		}
 
 		return true;
@@ -596,7 +603,7 @@ class Book {
 		}
 
 		$wpdb->query( $query );
-
+		clean_post_cache( $post );
 
 		if ( 'part' == $type ) {
 			// We're setting two things here - the new post_parent (to the first part)
