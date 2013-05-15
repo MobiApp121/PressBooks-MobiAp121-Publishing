@@ -164,6 +164,7 @@ class Epub201 extends Export {
 		try {
 
 			$this->createContainer();
+			$this->createCom();
 			$this->createOEPBS( $book_contents, $metadata );
 			$this->createOPF( $book_contents, $metadata );
 			$this->createNCX( $book_contents, $metadata );
@@ -415,6 +416,13 @@ class Epub201 extends Export {
 		file_put_contents(
 			$this->tmpDir . '/META-INF/container.xml',
 			$this->loadTemplate( __DIR__ . '/templates/container.php' ) );
+	}
+	
+	protected function createCom() {
+	
+		file_put_contents(
+			$this->tmpDir . '/META-INF/com.apple.ibooks.display-options.xml',
+			$this->loadTemplate( __DIR__ . '/templates/com.apple.ibooks.display-options.php' ) );
 	}
 
 
