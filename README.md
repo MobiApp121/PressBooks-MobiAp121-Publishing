@@ -1,7 +1,7 @@
 PressBooks
 ==========
 
-This is [MobiApp121 Publishing's](http://mobiapp121.com/publishing/) development version of[PressBooks](http://pressbooks.com), a book content management system which exports in multiple formats: ebooks, webbooks, print-ready [PDF][], and various XML flavours. [MobiApp121 Publishing](http://mobiapp121.com/publishing/) are developing and using PressBooks to provide a supporting services/showcase platform for their range of eBook and Publishing services. There are some small changes (so far) to include a Drop Cap plugin, Apple iBook xml for ePub and TinyMCE compatibility for certain server setups.
+This is [MobiApp121 Publishing's](http://mobiapp121.com/publishing/) development version of [PressBooks](http://pressbooks.com), a book content management system which exports in multiple formats: ebooks, webbooks, print-ready [PDF][], and various XML flavours. [MobiApp121 Publishing](http://mobiapp121.com/publishing/) are developing and using PressBooks to provide a supporting services/showcase platform for their range of eBook and Publishing services. There are some small changes (so far) to include a Drop Cap plugin, Apple iBook xml for ePub and TinyMCE compatibility for certain server setups.
 
 [PressBooks](http://pressbooks.com) is built on top of WordPress Multi-Site, and makes significant changes to:
   * admin interface (customized for books and other structured documents, such as magazines, journals, reports etc.)
