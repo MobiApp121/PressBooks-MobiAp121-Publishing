@@ -1,8 +1,8 @@
 /*
 Theme Name: Luther
-Theme URI: http://pressbooks.com/
+Theme URI: http://mobiapp121.com/publishing/
 Description: Named after Martin Luther, this is a traditional book theme, good for novels, and text-heavy non-fiction. An earlier version of this theme was commissioned by Fortress Press / Augsburg Fortress.
-Author: The PressBooks Team
+Author: MobiApp121 Publishing
 Version: 1.1
 */
 
@@ -362,7 +362,7 @@ a.button-red:active {
 }
 nav {
   background: #313131;
-  background: none repeat scroll 0 0 rgba(0, 0, 0, 0.8);
+  background: none repeat scroll 0 0 rgba(177, 17, 17, 0.8);
   -moz-box-shadow: 2px 2px 2px #aeaeae;
   -o-box-shadow: 2px 2px 2px #aeaeae;
   -webkit-box-shadow: 2px 2px 2px #aeaeae;
@@ -395,18 +395,18 @@ nav {
 }
 .pressbooks-logo {
   float: left;
-  font: 1em 'Oswald', Arial, Helvetica, sans-serif;
-  line-height: 2.6em;
+  font: 1.2em 'Oswald', Arial, Helvetica, sans-serif;
+  line-height: 2.2em;
   margin: 0;
   padding: 2px 10px 1px 30px;
-  text-transform: uppercase;
+  text-transform: none;
 }
 .pressbooks-logo a {
   color: #ffffff;
   text-decoration: none;
 }
 h1.book-title {
-  font: 1.2em/1.6em "Minion Pro", "Times New Roman", Times, serif;
+  font: 1.2em/1.6em "Georgia", "Times New Roman", Times, serif;
   /* 26px/16px */
   margin: 0 auto;
   padding: 10px 60px 0;
@@ -853,10 +853,6 @@ div.aligncenter {
   padding-top: 5px;
   text-align: center;
 }
-.entry-title span {
-	display: block;
-	margin-bottom: 1.4em;
-}
 .page-title {
 	font-size: 1.4em;
 	font-style: normal;
@@ -973,6 +969,14 @@ a.button-black:active {
 /********************
 	  Content
 *********************/
+.dropcap {
+line-height: 90%;
+height: 0.75em;
+font-size: 320%;
+margin-right: 0.075em;
+float:left;
+}
+
 aside {
   background-color: #F6F6F6;
   border: 1px solid #ccc;
