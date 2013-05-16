@@ -14,7 +14,7 @@ Our web/ebook and [PDF][] exports are all driven by HTML+CSS. XML outputs have n
 
   [PDF]: http://pressbooks.com/prince        "Note: we use the non-free software Prince XML for PDF export."
   
-  Mobiapp121 is developing a free alternative which will be added to this repository as soon as possible.
+  Mobiapp121 is developing a free PDF alternative which will be added to this repository as soon as possible.
 
 
 Important!
