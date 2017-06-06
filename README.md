@@ -16,7 +16,7 @@ We are currently working on a new version through a local development platform. 
 
 PressBooks is free software, released under the GPL v.2.0 license. 
 
-Our web/ebook and [PDF][] exports are all driven by HTML+CSS. XML outputs have no styling.
+Their web/ebook and [PDF][] exports are all driven by HTML+CSS. XML outputs have no styling.
 
   [PDF]: http://pressbooks.com/prince        "Note: we use the non-free software Prince XML for PDF export."
   
