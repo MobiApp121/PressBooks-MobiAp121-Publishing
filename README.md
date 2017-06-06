@@ -41,7 +41,7 @@ Important!
 Try pressbooks.com
 ------------------
 
-While PressBooks for MobiApp121 Publishing is open source, we recommend you try [PressBooks.com](http://pressbooks.com) before deciding whether or not you wish to host and maintain your own instance. We can also host and maintain an instance for you. 
+Whilst PressBooks or this version, are both open source, we recommend you try [PressBooks.com](http://pressbooks.com) before deciding whether or not you wish to host and maintain your own instance. We can also host and maintain an instance for you. 
 
 Installing the Plugin
 ---------------------
