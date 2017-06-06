@@ -129,21 +129,24 @@ Example config files for a dev site hosted at http://localhost/~dac514/textopres
 	/**
 	 * Multi-site support, Part 2
 	 */
+	define('WP_ALLOW_MULTISITE', true);
+
 	define('MULTISITE', true);
 	define('SUBDOMAIN_INSTALL', false);
-	$base = '/~dac514/textopress/';
-	define('DOMAIN_CURRENT_SITE', 'localhost');
-	define('PATH_CURRENT_SITE', '/~dac514/textopress/');
+	define('DOMAIN_CURRENT_SITE', 'mobiapp121.com');
+	define('PATH_CURRENT_SITE', '/publishing/');
 	define('SITE_ID_CURRENT_SITE', 1);
 	define('BLOG_ID_CURRENT_SITE', 1);
 
 	/**
 	 * PressBooks
 	 */
-	define( 'PB_PRINCE_COMMAND', '/usr/bin/prince' );
-	define( 'PB_KINDLEGEN_COMMAND', '/home/dac514/bin/kindlegen' );
-	define( 'PB_EPUBCHECK_COMMAND', '/usr/bin/java -jar /home/dac514/bin/epubcheck-3.0-RC-1/epubcheck-3.0-RC-1.jar' );
+	define( 'PB_PRINCE_COMMAND', '/home/mobiapp121/bin/prince/bin/prince' );
+	define( 'PB_KINDLEGEN_COMMAND', '/home/mobiapp121/bin/kindlegen/kindlegen' );
+	define( 'PB_EPUBCHECK_COMMAND', '/usr/bin/java -jar /home/mobiapp121/bin/epubcheck/epubcheck-3.0.1.jar' );
 	define( 'PB_XMLLINT_COMMAND', '/usr/bin/xmllint' );
+
+	define('WP_MEMORY_LIMIT', '128M');
 
 	/**
 	 * Optional definitions
