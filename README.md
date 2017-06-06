@@ -18,9 +18,9 @@ PressBooks is free software, released under the GPL v.2.0 license.
 
 Their web/ebook and [PDF][] exports are all driven by HTML+CSS. XML outputs have no styling.
 
-  [PDF]: http://pressbooks.com/prince        "Note: we use the non-free software Prince XML for PDF export."
+  [PDF]: http://pressbooks.com/prince        "Note: they use the non-free software Prince XML for PDF export."
   
-  Mobiapp121 is developing a free PDF alternative which will be added to this repository as soon as possible.
+  Mobiapp121 is developing a free PDF alternative which will be added to this repository as soon as possible. There is [mPDF for PressBooks](https://github.com/pressbooks/pressbooks-mpdf) as a free opensource alternative but we find it doesn't parse very well.
 
 
 Important!
@@ -44,14 +44,14 @@ PressBooks is not for use on an existing blog. Instead it should be used with a 
 Requirements
 ------------
 
-PressBooks works with PHP 5.4.X and WordPress 3.5.1 Lower versions are not supported.
+This version works with PHP 5.6.X and WordPress 3.6, non other are supported.
 
 Disclaimers
 -----------
 
-The PressBooks plugin is supplied "as is" and all use is at your own risk.
+The PressBooks/MobiApp121 plugin is supplied "as is" and all use is at your own risk.
 
 More Details
 ------------
 
-See readme.txt for installation details.
+See readme.txt for specific installation details, relevant to this version. If you would like to hire us to install a platform for you, please [email us](mailto:info@mobiapp121.com)
