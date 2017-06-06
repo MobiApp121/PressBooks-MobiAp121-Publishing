@@ -5,7 +5,7 @@ This is [MobiApp121 Publishing's](http://mobiapp121.com/publishing/) development
 
 [MobiApp121 Publishing](http://mobiapp121.com/publishing/) has developed this version of PressBooks to provide a free and non-commercial service to existing authors and publisher clients only and as a front end eReader. There are some small changes which include a Drop Caps plugin of our own design for any template, Apple specific xml for iBook, refined footnotes, Latex, tables and TinyMCE Visual Editor extended functionality. We refine the books further commercially in-house, using a combination of InDesign, Adobe Acrobat, Jutoh and Sigil for ePub 3, Fixed-Layout, Daisy, Audiobook and Print professional submission.
 
-Other differences include using our own and quite complex front end theme instead of Publisher One, that incoprates a lot of other software to compliment the book platform and some Wordpres custom admin labelling to avoid confusion.
+Other differences include using our own and quite complex front end theme instead of Publisher One, that incoprates a lot of other software to compliment the book platform and some Wordpress custom admin labelling to avoid confusion.
 
 We are currently working on a new version through a local development platform. The changes will be reflected here when we reach a first stable release.
 
