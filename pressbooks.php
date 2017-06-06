@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: PressBooks
-Plugin URI: http://www.pressbooks.com
-Description: Simple Book Production
-Version: 2.0.3
+Plugin URI: http://mobiapp121.com/publishing/
+Description: As Simple As 121 ...
+Version: 3.0.3
 Author: BookOven Inc.
-Author URI: http://www.pressbooks.com
+Author URI: http://mobiapp121.com/publishing/
 Text Domain: pressbooks
 License: GPLv2
 */
@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) )
 	return;
 
 // -------------------------------------------------------------------------------------------------------------------
-// Turn on $_SESSION
+// Turn on $_SESSIONS
 // -------------------------------------------------------------------------------------------------------------------
 
 function _pb_session_start() {
@@ -43,7 +43,7 @@ if ( ! is_multisite() || ! version_compare( get_bloginfo( 'version' ), $pb_minim
 
 	add_action( 'admin_notices', function () use ( $pb_minimum_wp ) {
 		echo '<div id="message" class="error fade"><p>';
-		printf( __( 'PressBooks will not work with your version of WordPress. PressBooks requires a dedicated install of WordPress Multi-Site, version %s or greater. Please upgrade WordPress if you would like to use PressBooks.', 'pressbooks' ), $pb_minimum_wp );
+		printf( __( 'The MobiApp121 eBook Platform will not work with your version of WordPress. MobiApp121 requires a dedicated install of WordPress Multi-Site, version %s or greater. Please upgrade WordPress if you would like to use the MobiApp121 eBook Platform.', 'pressbooks' ), $pb_minimum_wp );
 		echo '</p></div>';
 
 	} );
