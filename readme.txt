@@ -107,8 +107,7 @@ Once installed, define the following wp-config.php variables. The defaults are:
 	define( 'PB_XMLLINT_COMMAND', '/usr/bin/xmllint' );
 
 
-Example config files for a dev site hosted at http://localhost/~dac514/textopress/
-
+Example config files for a dev site hosted at /home/mobiapp121/webapps/mobiapp121/publishing
 ### wp-config.php file [snippet]: ###
 
 	/**
