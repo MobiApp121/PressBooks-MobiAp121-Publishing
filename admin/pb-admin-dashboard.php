@@ -18,7 +18,7 @@ function replace_root_dashboard_widgets() {
 	unset( $wp_meta_boxes['dashboard']['side']['core']['dashboard_secondary'] );
 
 	// Add our news feed.
-	add_meta_box( 'pb_dashboard_widget_blog', __( 'PressBooks News', 'pressbooks' ), __NAMESPACE__ . '\display_pressbooks_blog', 'dashboard', 'side', 'low' );
+	add_meta_box( 'pb_dashboard_widget_blog', __( 'MobiApp121 News', 'pressbooks' ), __NAMESPACE__ . '\display_pressbooks_blog', 'dashboard', 'side', 'low' );
 }
 
 
@@ -39,7 +39,7 @@ function replace_dashboard_widgets() {
 	// Replace with our own
 	$book_name = get_bloginfo( 'name' );
 	add_meta_box( 'pb_dashboard_widget_book', ( $book_name ? $book_name : __( 'My Book', 'pressbooks' ) ), __NAMESPACE__ . '\display_book_widget', 'dashboard', 'normal', 'high' );
-	add_meta_box( 'pb_dashboard_widget_metadata', __( 'PressBooks News', 'pressbooks' ), __NAMESPACE__ . '\display_pressbooks_blog', 'dashboard', 'side', 'high' );
+	add_meta_box( 'pb_dashboard_widget_metadata', __( 'MobiApp121 News', 'pressbooks' ), __NAMESPACE__ . '\display_pressbooks_blog', 'dashboard', 'side', 'high' );
 	add_meta_box( 'pb_dashboard_widget_users', __( 'Users', 'pressbooks' ), __NAMESPACE__ . '\display_users_widget', 'dashboard', 'side', 'high' );
 }
 
@@ -84,16 +84,15 @@ function display_book_widget() {
 	echo '<div class="part-buttons"><a href="post-new.php?post_type=chapter">' . __( 'Add', 'pressbooks' ) . '</a> | <a class="remove" href="admin.php?page=pressbooks">' . __( 'Organize', 'pressbooks' ) . '</a></div>';
 }
 
-
 /**
  * Displays the PressBooks Blog RSS as a widget
  */
 function display_pressbooks_blog() {
 
 	wp_widget_rss_output( array(
-		'url' => 'http://blog.pressbooks.com/?feed=rss2',
-		'title' => __( 'PressBooks News', 'pressbooks' ),
-		'items' => 5,
+		'url' => 'https://mobiapp121.com/?feed=rss2',
+		'title' => __( 'MobiApp121 News', 'pressbooks' ),
+		'items' => 10,
 		'show_summary' => 1,
 		'show_author' => 0,
 		'show_date' => 1,
@@ -121,4 +120,14 @@ function display_users_widget() {
 	echo '</table>';
 
 	echo '<div class="part-buttons"> <a href="user-new.php">' . __( 'Add', 'pressbooks' ) . '</a> | <a class="remove" href="users.php">' . __( 'Organize', 'pressbooks' ) . '</a></div>';
+}
+
+/**
+ * Removes WP Welcome Screen option
+ */
+ 
+add_action( 'wp_dashboard_setup', 'remove_welcome_panel' );
+function remove_welcome_panel() {
+    global $wp_filter;
+    unset( $wp_filter['welcome_panel'] );
 }

@@ -138,7 +138,8 @@ add_action('login_head', create_function('', 'echo \'<link rel="stylesheet" type
 
 /* Change login logo URL */
 function custom_login_url($url) {
-	    return get_bloginfo( 'url' );
+	    return 'https://mobiapp121.com';
+
 }	    
 add_filter( 'login_headerurl', 'custom_login_url' );
 

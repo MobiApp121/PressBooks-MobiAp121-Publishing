@@ -21,7 +21,7 @@ class Icml extends Export {
 		// Some defaults
 
 		if ( ! defined( 'PB_XMLLINT_COMMAND' ) )
-			define( 'PB_XMLLINT_COMMAND', '/usr/bin/xmllint' );
+			define( 'PB_XMLLINT_COMMAND', '/home/mobiapp121/bin/xmllint' );
 	}
 
 

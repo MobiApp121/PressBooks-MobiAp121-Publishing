@@ -14,7 +14,7 @@
 		<?php endif; ?>
 		
 		<?php if ( $options['tumblrurl'] != '' ) : ?>
-			<a href="<?php echo $options['tumblrurl']; ?>" class="tumblr" title="Tumblr"><?php _e( 'Tumblr', 'pressbooks' ); ?></a>
+			<a href="<?php echo $options['tumblrurl']; ?>" class="tumblr" title="LinkedIn"><?php _e( 'LinkedIn', 'pressbooks' ); ?></a>
 		<?php endif; ?>
 
 		<?php if ( ! $options['hiderss'] ) : ?>

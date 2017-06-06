@@ -110,6 +110,14 @@ class Epub201 extends Export {
 
 
 	/**
+	 * Used by HtmLawed with $GLOBALS['hl_Ids']
+	 *
+	 * @var array
+	 */
+	protected $fixme;
+
+
+	/**
 	 * @param array $args
 	 */
 	function __construct( array $args ) {
@@ -117,12 +125,17 @@ class Epub201 extends Export {
 		// Some defaults
 
 		if ( ! defined( 'PB_EPUBCHECK_COMMAND' ) )
-			define( 'PB_EPUBCHECK_COMMAND', '/usr/bin/java -jar /opt/epubcheck/epubcheck.jar' );
+			define( 'PB_EPUBCHECK_COMMAND', '/usr/bin/java -jar /home/mobiapp121/bin/epubcheck/epubcheck-3.0.1.jar' );
 
 		$this->tmpDir = $this->createTmpDir();
 		$this->exportStylePath = $this->getExportStylePath( 'epub' );
 
 		$this->themeOptionsOverrides();
+
+		// HtmLawed: id values not allowed in input
+		foreach ( $this->reservedIds as $val ) {
+			$this->fixme[$val] = 1;
+		}
 	}
 
 
@@ -345,8 +358,14 @@ class Epub201 extends Export {
 		$config = array(
 			'valid_xhtml' => 1,
 			'no_deprecated_attr' => 2,
+			'unique_ids' => 'fixme-',
 			'hook' => '\PressBooks\Sanitize\html5_to_xhtml11',
 		);
+
+		// Reset on each htmLawed invocation
+		unset( $GLOBALS['hl_Ids'] );
+		if ( ! empty ( $this->fixme ) )
+			$GLOBALS['hl_Ids'] = $this->fixme;
 
 		return htmLawed( $html, $config );
 	}
@@ -551,10 +570,10 @@ class Epub201 extends Export {
 
 		// Resize Image
 
-		if ( ! empty( $metadata['pb_cover_image'] ) && ! preg_match( '~assets/images/default-book-cover.png$~', $metadata['pb_cover_image'] ) ) {
+		if ( ! empty( $metadata['pb_cover_image'] ) && ! preg_match( '~assets/images/default-book-cover.jpg$~', $metadata['pb_cover_image'] ) ) {
 			$source_path = \PressBooks\Utility\get_media_path( $metadata['pb_cover_image'] );
 		} else {
-			$source_path = PB_PLUGIN_DIR . 'assets/images/default-book-cover.png';
+			$source_path = PB_PLUGIN_DIR . 'assets/images/default-book-cover.jpg';
 		}
 		$dest_image = sanitize_file_name( basename( $source_path ) );
 		$dest_image = Sanitize\force_ascii( $dest_image );
@@ -690,7 +709,7 @@ class Epub201 extends Export {
 		// Copyright
 		// Please be kind, help PressBooks grow by leaving this on!
 		if ( empty( $GLOBALS['PB_SECRET_SAUCE']['TURN_OFF_FREEBIE_NOTICES'] ) ) {
-			$freebie_notice = 'This book was produced using <a href="http://pressbooks.com/">PressBooks.com</a>.';
+			$freebie_notice = 'This book was produced by <a href="http://mobiapp121.com/publishing/">MobiApp121 Publishing</a>.';
 			$html .= "<p>$freebie_notice</p>";
 		}
 
@@ -1406,7 +1425,20 @@ class Epub201 extends Export {
 		$url = rtrim( $url, '/' );
 
 		$last_part = explode( '/', $url );
-		$last_part = trim( end( $last_part ) );
+		$last_pos = count( $last_part ) - 1;
+		$anchor = '';
+
+		// Look for #anchors
+		if ( $last_pos > 0 && '#' == substr( trim( $last_part[$last_pos] ), 0, 1 ) ) {
+			$anchor = trim( $last_part[$last_pos] );
+			$last_part = trim( $last_part[$last_pos - 1] );
+		} elseif ( false !== strpos( $last_part[$last_pos], '#' ) ) {
+			list( $last_part, $anchor ) = explode( '#', $last_part[$last_pos] );
+			$anchor = trim( "#{$anchor}" );
+			$last_part = trim( $last_part );
+		} else {
+			$last_part = trim( $last_part[$last_pos] );
+		}
 
 		if ( ! $last_part )
 			return false;
@@ -1436,6 +1468,9 @@ class Epub201 extends Export {
 			if ( $p == $last_part ) break;
 		}
 		$new_url = "$new_type-" . sprintf( "%03s", $new_pos ) . "-$last_part.html";
+
+		if ( $anchor )
+			$new_url .= $anchor;
 
 		return $new_url;
 	}

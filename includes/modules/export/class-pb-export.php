@@ -31,7 +31,7 @@ abstract class Export {
 	 * @var array
 	 */
 	public $errorsEmail = array(
-		'errors@pressbooks.com',
+		'support@mobiapp121.com',
 	);
 
 
@@ -167,10 +167,10 @@ abstract class Export {
 		}
 
 		add_filter( 'wp_mail_from', function ( $from_email ) {
-			return str_replace( 'wordpress@', 'pressbooks@', $from_email );
+			return str_replace( 'wordpress@', 'ebooks@', $from_email );
 		} );
 		add_filter( 'wp_mail_from_name', function ( $from_name ) {
-			return 'PressBooks';
+			return 'MobiApp121 Publishing';
 		} );
 
 		foreach ( $this->errorsEmail as $email ) {

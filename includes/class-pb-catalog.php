@@ -8,100 +8,353 @@
 
 namespace PressBooks;
 
+
 class Catalog {
 
+
 	/**
-	 * Registers catalog administration menu page.
-	 */
-	function addCatalogPage() {
-		add_submenu_page( 'index.php', 'My Catalog', 'My Catalog', 'read', 'catalog', __NAMESPACE__ .'\Catalog::displayCatalogPage' );
-	}
-	
-	/**
-	 * Displays catalog administration menu page.
-	 */
-	function displayCatalogPage() {
-		$user_catalog_form_url = wp_nonce_url( get_bloginfo( 'url' ) . '/wp-admin/index.php?page=catalog', 'pressbooks_user_catalog' );
-		Catalog::user_catalog_save( get_current_user_id() ); ?>
-		<div class="wrap">
-			<div id="icon-options-general" class="icon32"></div>
-			<h2><?php echo __( 'PressBooks Catalog', 'pressbooks' ); ?></h2>
-			<?php if ( $_POST) {
-				$nonce = $_REQUEST['_wpnonce'];
-				if ( !wp_verify_nonce( $nonce, 'pressbooks_user_catalog' ) ) { ?>
-			<div id="message" class="error below-h2"><p><?php echo __( 'Nonce verification failed.', 'pressbooks' ); ?></p></div>
-				<?php } else { ?>
-			<div id="message" class="updated below-h2"><p><?php echo __( 'Catalog saved.', 'pressbooks' ); ?></p></div>
-				<?php }
-			} ?>
-			<?php echo '<p>' . __( 'Choose from the following books for inclusion in your catalog', 'pressbooks' ) . '.</p>'; ?>
-			<form method="post" action="<?php echo $user_catalog_form_url; ?>">
-				<?php $user_catalog = get_user_meta( get_current_user_id(), 'pressbooks_user_catalog', true ); ?>
-				<?php $userblogs = get_blogs_of_user( get_current_user_id() ); 
-				$books = array(); 
-				foreach ($userblogs as $book) {
-					if ( !is_main_site( $book->userblog_id ) ) {
-						$books[$book->blogname] = $book;
-					}
-				}
-				ksort($books);
-				foreach ($books as $book) {
-					if ( ! isset( $user_catalog[$book->userblog_id] ) ) { $user_catalog[$book->userblog_id] = 0; }
-				}
-				?>
-				<table class="widefat fixed">
-				<?php $num = count( $books );
-				$cols = 1;
-				if ( $num >= 20 )
-					$cols = 4;
-				elseif ( $num >= 10 )
-					$cols = 2;
-				$num_rows = ceil( $num / $cols );
-				$split = 0;
-				for ( $i = 1; $i <= $num_rows; $i++ ) {
-					$rows[] = array_slice( $books, $split, $cols );
-					$split = $split + $cols;
-				}
-			
-				$c = '';
-				foreach ( $rows as $row ) {
-					$c = $c == 'alternate' ? '' : 'alternate';
-					echo "<tr class='$c'>";
-					$i = 0;
-					foreach ( $row as $book ) {
-						$s = $i == 3 ? '' : 'border-right: 1px solid #ccc;';
-						echo "<td valign='top' style='$s'>";
-						echo "<h3><label><input type=\"checkbox\" name=\"pressbooks_user_catalog[{$book->userblog_id}]\" id=\"{$book->userblog_id}\" value=\"1\" " . checked(1, $user_catalog[$book->userblog_id], false) . "/> {$book->blogname}</label></h3>";
-						echo "<p>" . apply_filters( 'myblogs_blog_actions', "<a href='" . esc_url( get_home_url( $book->userblog_id ) ). "'>" . __( 'Visit' ) . "</a> | <a href='" . esc_url( get_admin_url( $book->userblog_id ) ) . "'>" . __( 'Dashboard' ) . "</a>", $book ) . "</p>";
-						echo apply_filters( 'myblogs_options', '', $book );
-						echo "</td>";
-						$i++;
-					}
-					echo "</tr>";
-				}?>
-				</table>
-				<?php submit_button(); ?>
-			</form>
-		</div>
-	
-	<?php }
-	
-	/**
-	 * Saves user catalog.
+	 * The value for option: pb_catalog_db_version
 	 *
-	 * @param $user_id
+	 * @see install()
+	 * @var int
 	 */
-	function user_catalog_save( $user_id ) {
-		if ( $_POST) {
-			$nonce = $_REQUEST['_wpnonce'];
-			if ( !wp_verify_nonce( $nonce, 'pressbooks_user_catalog' ) ) { return false; }
-			if ( !current_user_can( 'edit_user', $user_id ) ) { return false; }
-			if ( isset( $_POST['pressbooks_user_catalog'] ) ) {
-				update_user_meta( $user_id, 'pressbooks_user_catalog', $_POST['pressbooks_user_catalog'] );  
-		    } else {
-			    delete_user_meta( $user_id, 'pressbooks_user_catalog' );
-		    }
+	static $currentVersion = 2;
+
+
+	/**
+	 * Catalog table, set in constructor
+	 *
+	 * @var
+	 */
+	protected $dbTable;
+
+
+	/**
+	 * User ID to construct this object
+	 *
+	 * @var int
+	 */
+	protected $userId;
+
+
+	/**
+	 * Column structure of catalog_table
+	 *
+	 * @var array
+	 */
+	protected $dbColumns = array(
+		'users_id' => '%d',
+		'blogs_id' => '%d',
+		'deleted' => '%d',
+		'featured' => '%d',
+		'tag_1' => '%s',
+		'tag_2' => '%s',
+	);
+
+
+	/**
+	 * @param int $user_id (optional)
+	 */
+	function __construct( $user_id = 0 ) {
+
+		/** @var $wpdb \wpdb */
+		global $wpdb;
+		$this->dbTable = $wpdb->base_prefix . 'pressbooks_catalog';
+
+		if ( $user_id ) {
+			$this->userId = $user_id;
+		} elseif ( isset( $_REQUEST['user_id'] ) && current_user_can( 'edit_user', (int) $_REQUEST['user_id'] ) ) {
+			$this->userId = (int) $_REQUEST['user_id'];
+		} else {
+			$this->userId = get_current_user_id();
 		}
+	}
+
+
+	/**
+	 * Get an entire catalog.
+	 *
+	 * @return mixed
+	 */
+	function get() {
+
+		/** @var $wpdb \wpdb */
+		global $wpdb;
+		$sql = $wpdb->prepare( "SELECT * FROM {$this->dbTable} WHERE users_id = %d AND deleted = 0 ", $this->userId );
+
+		return $wpdb->get_results( $sql, ARRAY_A );
+	}
+
+
+	/**
+	 * Save an entire catalog.
+	 *
+	 * @param array $items
+	 */
+	function save( array $items ) {
+
+		foreach ( $items as $item ) {
+			if ( isset( $item['blogs_id'] ) ) {
+				$this->saveBook( $this->userId, $item['blogs_id'], $item );
+			}
+		}
+	}
+
+
+	/**
+	 * Delete an entire catalog.
+	 *
+	 * @param bool $for_real (optional)
+	 *
+	 * @return mixed
+	 */
+	function delete( $for_real = false ) {
+
+		/** @var $wpdb \wpdb */
+		global $wpdb;
+
+		if ( $for_real ) {
+			return $wpdb->delete( $this->dbTable, array( 'users_id' => $this->userId ), array( '%d' ) );
+		} else {
+			return $wpdb->update( $this->dbTable, array( 'deleted' => 1 ), array( 'users_id' => $this->userId ), array( '%d' ), array( '%d' ) );
+		}
+	}
+
+
+	/**
+	 * Get a book from a user catalog.
+	 *
+	 * @param int $blog_id
+	 *
+	 * @return mixed
+	 */
+	function getBook( $blog_id ) {
+
+		/** @var $wpdb \wpdb */
+		global $wpdb;
+		$sql = $wpdb->prepare( "SELECT * FROM {$this->dbTable} WHERE users_id = %d AND blogs_id = %d AND deleted = 0 ", $this->userId, $blog_id );
+
+		return $wpdb->get_row( $sql, ARRAY_A );
+	}
+
+
+	/**
+	 * Get only blog IDs.
+	 *
+	 * @return array
+	 */
+	function getBookIds() {
+
+		/** @var $wpdb \wpdb */
+		global $wpdb;
+		$sql = $wpdb->prepare( "SELECT blogs_id FROM {$this->dbTable} WHERE users_id = %d AND deleted = 0 ", $this->userId );
+
+		return $wpdb->get_col( $sql );
+	}
+
+
+	/**
+	 * Save a book to a user catalog.
+	 *
+	 * @param $blog_id
+	 * @param array $item
+	 *
+	 * @return mixed
+	 */
+	function saveBook( $blog_id, array $item ) {
+
+		/** @var $wpdb \wpdb */
+		global $wpdb;
+
+		unset( $item['users_id'], $item['blogs_id'], $item['deleted'] ); // Don't allow spoofing
+
+		$data = array( 'users_id' => $this->userId, 'blogs_id' => $blog_id, 'deleted' => 0 );
+		$format = array( 'users_id' => $this->dbColumns['users_id'], 'blogs_id' => $this->dbColumns['blogs_id'], 'deleted' => $this->dbColumns['deleted'] );
+
+		foreach ( $item as $key => $val ) {
+			if ( isset( $this->dbColumns[$key] ) ) {
+				$data[$key] = $val;
+				$format[$key] = $this->dbColumns[$key];
+			}
+		}
+
+		// INSERT ... ON DUPLICATE KEY UPDATE
+		// @see http://dev.mysql.com/doc/refman/5.0/en/insert-on-duplicate.html
+
+		$args = array();
+		$sql = "INSERT INTO {$this->dbTable} ( ";
+		foreach ( $data as $key => $val ) {
+			$sql .= "`$key`, ";
+		}
+		$sql = rtrim( $sql, ', ' ) . ' ) VALUES ( ';
+
+		foreach ( $format as $key => $val ) {
+			$sql .= $val . ', ';
+			$args[] = $data[$key];
+		}
+		$sql = rtrim( $sql, ', ' ) . ' ) ON DUPLICATE KEY UPDATE ';
+
+		$i = 0;
+		foreach ( $data as $key => $val ) {
+			if ( 'users_id' == $key || 'blogs_id' == $key ) continue;
+			$sql .= "`$key` = {$format[$key]}, ";
+			$args[] = $val;
+			++$i;
+		}
+		$sql = rtrim( $sql, ', ' );
+		if ( ! $i ) $sql .= ' users_id = users_id '; // Do nothing
+
+		$sql = $wpdb->prepare( $sql, $args );
+
+		return $wpdb->query( $sql );
+	}
+
+
+	/**
+	 * Delete a book from a user catalog.
+	 *
+	 * @param int $blog_id
+	 * @param bool $for_real (optional)
+	 *
+	 * @return mixed
+	 */
+	function deleteBook( $blog_id, $for_real = false ) {
+
+		/** @var $wpdb \wpdb */
+		global $wpdb;
+
+		if ( $for_real ) {
+			return $wpdb->delete( $this->dbTable, array( 'users_id' => $this->userId, 'blogs_id' => $blog_id ), array( '%d', '%d' ) );
+		} else {
+			return $wpdb->update( $this->dbTable, array( 'deleted' => 1 ), array( 'users_id' => $this->userId, 'blogs_id' => $blog_id ), array( '%d' ), array( '%d', '%d' ) );
+		}
+	}
+
+
+	// ----------------------------------------------------------------------------------------------------------------
+	// Upgrades
+	// ----------------------------------------------------------------------------------------------------------------
+
+
+	/**
+	 * Upgrade catalog.
+	 *
+	 * @param int $version
+	 */
+	function upgrade( $version ) {
+
+		if ( $version < self::$currentVersion ) {
+			$this->createTable();
+		}
+	}
+
+
+	/**
+	 * DB Delta the initial Catalog table.
+	 *
+	 * If you change this, then don't forget to also change $this->dbColumns
+	 *
+	 * @see dbColumns
+	 * @see http://codex.wordpress.org/Creating_Tables_with_Plugins#Creating_or_Updating_the_Table
+	 */
+	protected function createTable() {
+
+		$sql = "CREATE TABLE {$this->dbTable} (
+				users_id INT(11) NOT null,
+  				blogs_id INT(11) NOT null,
+  				deleted TINYINT(1) NOT null,
+  				featured INT(11) DEFAULT 0 NOT null ,
+  				tag_1 VARCHAR(255) DEFAULT null,
+  				tag_2 VARCHAR(255) DEFAULT null,
+  				PRIMARY KEY  (users_id, blogs_id),
+  				KEY featured (featured),
+  				KEY tag_1 (tag_1),
+  				KEY tag_2 (tag_2)
+				); ";
+
+		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+		dbDelta( $sql );
+	}
+
+
+	// ----------------------------------------------------------------------------------------------------------------
+	// Catch form submissions
+	// ----------------------------------------------------------------------------------------------------------------
+
+
+	/**
+	 * Save custom CSS to database (and filesystem)
+	 *
+	 * @see pressbooks/admin/templates/custom-css.php
+	 */
+	static function formSubmit() {
+
+		/* Sanity check */
+
+		if ( false == static::isFormSubmission() || false == current_user_can( 'read' ) ) {
+			// Don't do anything in this function, bail.
+			return;
+		}
+
+		check_admin_referer( 'pb-user-catalog' );
+
+		$user_id = (int) $_POST['user_id'];
+
+		if ( ! current_user_can( 'edit_user', $user_id ) ) {
+			wp_die( __( 'You do not have permission to do that.', 'pressbooks' ) );
+		}
+
+
+		/* Save changes */
+
+		$catalog = new self();
+		$catalog->delete();
+		foreach ( @$_POST['pressbooks_user_catalog'] as $blog_id => $checked ) {
+			$catalog->saveBook( $blog_id, array() );
+		}
+
+		// Ok!
+		$_SESSION['pb_notices'][] = __( 'Settings saved.' );
+
+
+		/* Redirect back to form */
+
+		if ( get_current_user_id() != $user_id ) {
+			$redirect_url = get_bloginfo( 'url' ) . '/wp-admin/index.php?page=catalog&user_id=' . $user_id;
+		} else {
+			$redirect_url = get_bloginfo( 'url' ) . '/wp-admin/index.php?page=catalog';
+		}
+
+		\PressBooks\Redirect\location( $redirect_url );
+	}
+
+
+	/**
+	 * Check if a user submitted something to index.php?page=catalog
+	 *
+	 * @return bool
+	 */
+	static function isFormSubmission() {
+
+		if ( 'catalog' != @$_REQUEST['page'] ) {
+			return false;
+		}
+
+		if ( ! empty( $_POST ) ) {
+			return true;
+		}
+
+		$param_count = count( $_GET );
+
+		if ( 2 == $param_count && isset( $_GET['user_id'] ) ) {
+			return false;
+		}
+
+		if ( $param_count > 1 ) {
+			return true;
+		}
+
+		return false;
 	}
 
 

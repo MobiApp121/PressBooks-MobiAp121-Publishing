@@ -51,7 +51,7 @@ class Activation {
 		if ( ! get_site_option( 'pressbooks-activated' ) ) {
 
 			// Insert PressBooks description on root blog
-			update_blog_option( 1, 'blogdescription', 'Simple Book Publishing' );
+			update_blog_option( 1, 'blogdescription', 'MobiApp121 Publishing' );
 
 			// Configure theme and remove widgets from root blog
 			update_blog_option( 1, 'template', 'pressbooks-publisher-one' );
@@ -180,7 +180,7 @@ class Activation {
 			array(
 				'post_title' => __( 'Access Denied', 'pressbooks' ),
 				'post_name' => 'access-denied',
-				'post_content' => __( 'This book is private, and accessible only to registered users. If you have an account you can login <a href="/wp-login.php">here</a>.  You can also set up your own PressBooks book at: <a href="http://pressbooks.com">PressBooks.com</a>.', 'pressbooks' ),
+				'post_content' => __( 'This book is private, and accessible only to registered users. If you have an account you can login <a href="/wp-login.php">here</a>.  You can also set up your own MobiApp121 book at: <a href="http://mobiapp121.com/publishing">MobiApp121 Publishing</a>.', 'pressbooks' ),
 				'post_type' => 'page' ),
 			// Custom CSS
 			array(
@@ -200,7 +200,7 @@ class Activation {
 		$post = array( 'post_status' => 'publish', 'comment_status' => 'open', 'post_author' => $this->user_id, );
 		$page = array( 'post_status' => 'publish', 'comment_status' => 'closed', 'ping_status' => 'closed', 'post_content' => '<!-- Here be dragons.-->', 'post_author' => $this->user_id, 'tags_input' => __( 'Default Data', 'pressbooks' ) );
 
-		update_option( 'blogdescription', __( 'Simple Book Production', 'pressbooks' ) );
+		update_option( 'blogdescription', __( 'MobiApp121 Publishing', 'pressbooks' ) );
 
 		$parent_part = 0;
 		$intro = 0;

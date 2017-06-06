@@ -1,7 +1,7 @@
 <?php
 add_action( 'init', 'pbdropcap_button' );
 function pbdropcap_button() {
-  add_filter("mce_external_plugins", "pbdropcap_add_button");
+	add_filter("mce_external_plugins", "pbdropcap_add_button");
     add_filter('mce_buttons', 'pbdropcap_register_button');
 }	
 function pbdropcap_add_button($plugin_array) {

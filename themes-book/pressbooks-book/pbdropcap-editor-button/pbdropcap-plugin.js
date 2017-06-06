@@ -1,4 +1,4 @@
-function() {
+(function() {
     tinymce.create('tinymce.plugins.PBDropcap', {
         /**
          * Initializes the plugin, this will be executed after the plugin has been created.

@@ -416,10 +416,10 @@ class Hpub extends Export {
 
 		// Resize Image
 
-		if ( ! empty( $metadata['pb_cover_image'] ) && ! preg_match( '~assets/images/default-book-cover.png$~', $metadata['pb_cover_image'] ) ) {
+		if ( ! empty( $metadata['pb_cover_image'] ) && ! preg_match( '~assets/images/default-book-cover.jpg$~', $metadata['pb_cover_image'] ) ) {
 			$source_path = \PressBooks\Utility\get_media_path( $metadata['pb_cover_image'] );
 		} else {
-			$source_path = PB_PLUGIN_DIR . 'assets/images/default-book-cover.png';
+			$source_path = PB_PLUGIN_DIR . 'assets/images/default-book-cover.jpg';
 		}
 		$dest_image = basename( $source_path );
 		$dest_path = $this->tmpDir . "/images/" . $dest_image;
@@ -552,7 +552,7 @@ class Hpub extends Export {
 		// Copyright
 		// Please be kind, help PressBooks grow by leaving this on!
 		if ( empty( $GLOBALS['PB_SECRET_SAUCE']['TURN_OFF_FREEBIE_NOTICES'] ) ) {
-			$freebie_notice = 'This book was produced using <a href="http://pressbooks.com/">PressBooks.com</a>.';
+			$freebie_notice = 'This book was produced by <a href="http://mobiapp121.com/publishing/">MobiApp121 Publishing</a>.';
 			$html .= "<p>$freebie_notice</p>";
 		}
 
@@ -1261,7 +1261,20 @@ class Hpub extends Export {
 		$url = rtrim( $url, '/' );
 
 		$last_part = explode( '/', $url );
-		$last_part = trim( end( $last_part ) );
+		$last_pos = count( $last_part ) - 1;
+		$anchor = '';
+
+		// Look for #anchors
+		if ( $last_pos > 0 && '#' == substr( trim( $last_part[$last_pos] ), 0, 1 ) ) {
+			$anchor = trim( $last_part[$last_pos] );
+			$last_part = trim( $last_part[$last_pos - 1] );
+		} elseif ( false !== strpos( $last_part[$last_pos], '#' ) ) {
+			list( $last_part, $anchor ) = explode( '#', $last_part[$last_pos] );
+			$anchor = trim( "#{$anchor}" );
+			$last_part = trim( $last_part );
+		} else {
+			$last_part = trim( $last_part[$last_pos] );
+		}
 
 		if ( ! $last_part )
 			return false;
@@ -1291,6 +1304,9 @@ class Hpub extends Export {
 			if ( $p == $last_part ) break;
 		}
 		$new_url = "$new_type-" . sprintf( "%03s", $new_pos ) . "-$last_part.html";
+
+		if ( $anchor )
+			$new_url .= $anchor;
 
 		return $new_url;
 	}

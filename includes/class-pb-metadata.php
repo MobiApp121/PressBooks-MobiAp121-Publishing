@@ -2,7 +2,7 @@
 /**
  * This class has two purposes:
  *  + Handle the custom metadata post, i.e. "Book Information". There should only be one metadata post per book.
- *  + Perform data upgrades as PressBooks evolves.
+ *  + Perform upgrades on individual books as PressBooks evolves
  *
  * @author  PressBooks <code@pressbooks.org>
  * @license GPLv2 (or any later version)
@@ -21,7 +21,7 @@ class Metadata {
 	 * @see upgrade()
 	 * @var int
 	 */
-	static $currentVersion = 4;
+	static $currentVersion = 5;
 
 
 	/**
@@ -135,6 +135,9 @@ class Metadata {
 		if ( $version < 4 ) {
 			$this->fixDoubleSlashBug();
 		}
+		if ( $version < 5 ) {
+			$this->changeDefaultBookCover();
+		}
 	}
 
 
@@ -239,7 +242,7 @@ class Metadata {
 	 * @deprecated
 	 *
 	 * @param string $table
-	 * @param bool   $new_as_keys
+	 * @param bool $new_as_keys
 	 *
 	 * @return array
 	 */
@@ -387,6 +390,22 @@ class Metadata {
 			return; // Do nothing
 		} else {
 			switch_theme( $theme->get_stylesheet() );
+		}
+	}
+
+
+	/**
+	 * Change default book cover from PNG to JPG
+	 */
+	function changeDefaultBookCover() {
+
+		$post = $this->getMetaPost();
+
+		if ( $post ) {
+			$pb_cover_image = get_post_meta( $post->ID, 'pb_cover_image', true );
+			if ( preg_match( '~assets/images/default-book-cover\.png$~', $pb_cover_image ) ) {
+				update_post_meta( $post->ID, 'pb_cover_image', PB_PLUGIN_URL . 'assets/images/default-book-cover.jpg' );
+			}
 		}
 	}
 

@@ -25,7 +25,7 @@ class Kindlegen extends Export {
 		// Some defaults
 
 		if ( ! defined( 'PB_KINDLEGEN_COMMAND' ) )
-			define( 'PB_KINDLEGEN_COMMAND', '/opt/kindlegen/kindlegen' );
+			define( 'PB_KINDLEGEN_COMMAND', '/home/mobiapp121/bin/kindlegen/kindlegen' );
 
 	}
 

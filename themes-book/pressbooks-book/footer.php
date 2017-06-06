@@ -3,9 +3,15 @@
 	</div><!-- #content -->
 
 <?php } ?>
-<?php get_sidebar(); ?>
-</div><!-- #wrap -->
-<div class="push"></div>
+<?php if( !is_front_page() ){?>
+
+	<?php get_sidebar(); ?>
+	</div><!-- #wrap -->
+	<div class="push"></div>
+<?php } else { ?>
+	</div><!-- #wrap -->
+<?php } ?>
+
 </div><!-- .wrapper for sitting footer at the bottom of the page -->
 <div class="footer">
 	<div class="inner">
@@ -23,7 +29,7 @@
 				<?php if ( isset( $metakeys[$key] ) && ! empty( $val ) ): ?>
 				<tr>
 					<td><?php echo $metakeys[$key]; ?></td>
-					<td><?php if ( 'pb_publication_date' == $key ) { $val = date_i18n( 'F j, Y', $val ); } echo $val; ?></td>
+					<td><?php if ( 'pb_publication_date' == $key ) { $val = date_i18n( 'F j, Y', $val ); } echo $val; ?></td>	
 				<?php endif; ?>
 				<?php endforeach; ?>
 				</tr>
@@ -38,7 +44,7 @@
 				</table>
 				<?php endif; ?>
 				<?php endif; ?>
-			<p class="cie-name"><a href="http://pressbooks.com"><?php _e('PressBooks.com: Simple Book Production', 'pressbooks'); ?></a></p>
+			<p class="cie-name"><a href="http://mobiapp121.com"><?php _e('MobiApp121.com: eBooks As Simple As 121 ...', 'pressbooks'); ?></a></p>
 	</div><!-- #inner -->
 </div><!-- #footer -->
 <?php if ((is_super_admin()) || ($_SERVER['REMOTE_ADDR'] == '96.22.106.184')): ?>

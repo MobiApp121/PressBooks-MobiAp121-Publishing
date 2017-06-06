@@ -5,10 +5,21 @@
 <!--[if IE 8 ]>    <html <?php language_attributes(); ?> class="no-js ie8"> <![endif]-->
 <!--[if IE 9 ]>    <html <?php language_attributes(); ?> class="no-js ie9"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--><html <?php language_attributes(); ?> class="no-js"> <!--<![endif]-->
+<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js">
+      </script>
+    <![endif]-->
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>" />
 <meta name="viewport" content="width=device-width; initial-scale=1.0">
-<link rel="shortcut icon" href="<?php bloginfo('stylesheet_directory'); ?>/favicon.ico" />
+<link rel="shortcut icon" href="https://mobiapp121.com/publishing/favicon.ico?v=<?php echo filemtime('favicon.ico') ?>" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="theme-color" content="#ffffff">
 <title><?php
 	global $page, $paged;
 	wp_title( '|', true, 'right' );
@@ -41,48 +52,58 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 <!-- end Facebook JS -->
-<div class="nav-container">
-<nav>
 
- 		<!-- Book Title -->
-	    <h1 class="book-title"><a href="<?php echo home_url( '/' ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-	    
-	   
-	    
-	    <div class="sub-nav-left">
-			<!-- Logo -->
-			<h2 class="pressbooks-logo"><a href="<?php echo PATH_CURRENT_SITE; ?>"><?php echo get_site_option('site_name'); ?></a></h2>
-	    </div> <!-- end .sub-nav-left -->
-	    
-	    <div class="sub-nav-right">
-	    
-	    <?php if ( @array_filter( get_option( 'pressbooks_ecommerce_links' ) ) ) : ?>
-	    <!-- Buy -->
-	    <div class="buy">
-			<a href="<?php echo get_option('home'); ?>/buy" class="button-red"><?php _e('Buy', 'pressbooks'); ?></a>
-		</div>
-		<?php endif; ?>	
-		
-		<?php get_template_part( 'content', 'social-header' ); ?> 
-		
-		</div> <!-- end .sub-nav-right -->
-</nav>
-	      
-	  <div class="sub-nav">       
-	     <!-- Author Name -->   
-	    <div class="author-wrap"> 
-	    	<?php $metadata = pb_get_book_information(); ?>
-			<?php if ( ! empty( $metadata['pb_author'] ) ): ?>
-	     	<h3><?php echo $metadata['pb_author']; ?></h3>
-     		<?php endif; ?>
-	     </div> <!-- end .author-name -->
-	<iframe class="instapaper" border="0" scrolling="no" width="78" height="17" allowtransparency="true" frameborder="0" style="margin-bottom: -3px; z-index: 1338; border: 0px; background-color: transparent; overflow: hidden;" src="http://www.instapaper.com/e2?url=<?php the_permalink(); ?>&title=<?php the_title( ); ?>"></iframe>			     
-	  </div><!-- end sub-nav -->  
-	    
-		 
-</div> <!-- end .nav-container -->
+	 <?php if (is_front_page()):?>
+	 
+	 	<!-- home page wrap -->
+	 	
+	 		<div class="book-info-container">
+	 
+		<?php else: ?>  	 
+			
+		<div class="nav-container">
+				<nav>
+			
+			 		<!-- Book Title -->
+				    <h1 class="book-title"><a href="<?php echo home_url( '/' ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+			    
+			   
+			    
+					    <div class="sub-nav-left">
+							<!-- Logo -->
+							<h2 class="pressbooks-logo"><a href="https://mobiapp121.com/"><?php echo get_site_option('site_name'); ?></a></h2>
+					    </div> <!-- end .sub-nav-left -->
+			    
+			    <div class="sub-nav-right">
+			    
+					    <?php if ( @array_filter( get_option( 'pressbooks_ecommerce_links' ) ) ) : ?>
+					    <!-- Buy -->
+					    <div class="buy">
+							<a href="<?php echo get_option('home'); ?>/buy" class="button-red"><?php _e('Buy', 'pressbooks'); ?></a>
+						</div>
+						<?php endif; ?>	
+						
+						<?php get_template_part( 'content', 'social-header' ); ?> 
+				
+				</div> <!-- end .sub-nav-right -->
+			</nav>
+			      
+			  <div class="sub-nav">       
+			     <!-- Author Name -->   
+			    <div class="author-wrap"> 
+			    	<?php $metadata = pb_get_book_information(); ?>
+					<?php if ( ! empty( $metadata['pb_author'] ) ): ?>
+			     	<h3><?php echo $metadata['pb_author']; ?></h3>
+		     		<?php endif; ?>
+			     </div> <!-- end .author-name -->
+		<!-- 	<iframe class="instapaper" border="0" scrolling="no" width="78" height="17" allowtransparency="true" frameborder="0" style="margin-bottom: -3px; z-index: 1338; border: 0px; background-color: transparent; overflow: hidden;" src="http://www.instapaper.com/e2?url=<?php the_permalink(); ?>&title=<?php the_title( ); ?>"></iframe>	 -->		     
+			  </div><!-- end sub-nav -->  
+			    
+				 
+		</div> <!-- end .nav-container -->
 
-<div class="wrapper"><!-- for sitting footer at the bottom of the page -->	    
-	<div id="wrap">	    
-		<div id="content">
+		<div class="wrapper"><!-- for sitting footer at the bottom of the page -->	    
+			<div id="wrap">	    
+				<div id="content">
 
+	 <?php endif; ?>	

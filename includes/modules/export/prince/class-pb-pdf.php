@@ -58,7 +58,7 @@ class Pdf extends Export {
 		// Some defaults
 
 		if ( ! defined( 'PB_PRINCE_COMMAND' ) )
-			define( 'PB_PRINCE_COMMAND', '/usr/bin/prince' );
+			define( 'PB_PRINCE_COMMAND', '/home/mobiapp121/bin/prince/bin/prince' );
 
 		$this->exportStylePath = $this->getExportStylePath( 'prince' );
 		$this->exportScriptPath = $this->getExportScriptPath( 'prince' );
@@ -185,7 +185,7 @@ class Pdf extends Export {
 		// Copyright
 		// Please be kind, help PressBooks grow by leaving this on!
 		if ( empty( $GLOBALS['PB_SECRET_SAUCE']['TURN_OFF_FREEBIE_NOTICES'] ) ) {
-			$freebie_notice = 'This book was produced using PressBooks.com, and PDF rendering was done by PrinceXML.';
+			$freebie_notice = 'This book was produced by MobiApp121 Publishing.';
 			$css .= '#copyright-page .ugc > p:last-of-type::after { display:block; margin-top: 1em; content: "' . $freebie_notice . '" }' . "\n";
 		}
 

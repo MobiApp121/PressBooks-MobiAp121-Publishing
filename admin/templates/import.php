@@ -97,7 +97,7 @@ $current_import = get_option( 'pressbooks_current_import' );
 		<!-- Start by uploading a file -->
 
 		<p>
-			<?php _e( 'Supported file extensions:', 'pressbooks' ); ?> XML, EPUB <br />
+			<?php _e( 'Supported file extensions:', 'pressbooks' ); ?> XML, EPUB, ODT, DOCX <br />
 			<?php _e( 'Maximum file size:', 'pressbooks' ); echo ' ' . ini_get( 'upload_max_filesize' ); ?>
 		</p>
 
@@ -107,18 +107,20 @@ $current_import = get_option( 'pressbooks_current_import' );
 				<tbody>
 				<tr>
 					<th scope="row">
-						<label for="type_of">Type of</label>
+						<label for="type_of"><?php _e( 'Type of file', 'pressbooks' ); ?></label>
 					</th>
 					<td>
 						<select id="type_of" name="type_of">
-							<option value="wxr">WXR</option>
-							<option value="epub">EPUB</option>
+							<option value="wxr"><?php _e( 'WXR (WordPress eXtended RSS)', 'pressbooks' ); ?></option>
+							<option value="epub"><?php _e( 'EPUB (for Nook, iBooks, Kobo etc.)', 'pressbooks' ); ?></option>
+							<option value="odt"><?php _e( 'ODT (word processing file format of OpenDocument)', 'pressbooks' ); ?></option>
+							<option value="docx"><?php _e( 'DOCX (word processing file format of Microsoft)', 'pressbooks' ); ?></option>
 						</select>
 					</td>
 				</tr>
 				<tr>
 					<th scope="row">
-						<label for="import_file">File</label>
+						<label for="import_file"><?php _e( 'File', 'pressbooks' ); ?></label>
 					</th>
 					<td>
 						<input type="file" name="import_file" id="import_file">
