@@ -20,7 +20,7 @@ Their web/ebook and [PDF][] exports are all driven by HTML+CSS. XML outputs have
 
   [PDF]: http://pressbooks.com/prince        "Note: they use the non-free software Prince XML for PDF export."
   
-  Mobiapp121 is developing a free PDF alternative which will be added to this repository as soon as possible. There is [mPDF for PressBooks](https://github.com/pressbooks/pressbooks-mpdf) as a free opensource alternative but we find it doesn't parse very well.
+Mobiapp121 uses the watermarked free version of Prince for internal Pre-Press checking only we then produce the final proof for print via the methods outlined above. There is [mPDF for PressBooks](https://github.com/pressbooks/pressbooks-mpdf) as a free opensource alternative. We find it doesn't parse CSS/fonts very well though it is the current best alternative. We recommend to use Prince as outlined or you can obtain a [commercial licence](https://www.princexml.com/).
 
 
 Important!
@@ -29,6 +29,12 @@ Important!
  * Do ___NOT___ use PressBooks with an existing WordPress site. 
  * Please use with a ___FRESH___ install of WP ___MULTISITE___.
  * If this makes you nervous, please use the free site: [PressBooks](http://pressbooks.com), or contact us.
+ * This configuration is designed specifically to work in conjunction with several tested plugins:
+ 1 [WP-Quicklatex](https://en-gb.wordpress.org/plugins/wp-quicklatex/) + WP Super Cache, important for Latex.
+ 2 [MCE Table Buttons](https://wordpress.org/plugins/mce-table-buttons/), for tables.
+ 3 [Tiny MCE Spellcheck](https://wordpress.org/plugins/tinymce-spellcheck/), for inline proofing.
+ 4 [Disable All WP Updates](https://wordpress.org/plugins/disable-wordpress-updates/) security and nag prevention.
+ 5 Install reliable Malware/Firewall/Virus protection, especially with this older install.
 
 
 Try pressbooks.com
