@@ -14,8 +14,8 @@ namespace PressBooks\Admin\Laf;
 function add_footer_link() {
 
 	printf(
-		'<p id="footer-left" class="alignleft"><span id="footer-thankyou">%s <a href="http://pressbooks.com">PressBooks</a></span> &bull; <a href="http://pressbooks.com/about">%s</a> &bull; <a href="http://pressbooks.com/help">%s</a> &bull; <a href="http://pressbooks.com/contact">%s</a></p>',
-		__( 'Powered by', 'pressbooks' ),
+		'<p id="footer-left" class="alignleft"><span id="footer-thankyou">%s <a href="https://mobiapp121.com">MobiApp121</a></span> &bull; <a href="https://mobiapp121.com/services">%s</a> &bull; <a href="https://mobiapp121.com/services">%s</a> &bull; <a href="https://mobiapp121.com/contact-us">%s</a></p>',
+		__( 'Created by', 'pressbooks' ),
 		__( 'About', 'pressbooks' ),
 		__( 'Help', 'pressbooks' ),
 		__( 'Contact', 'pressbooks' )
@@ -39,18 +39,18 @@ function add_feedback_dialogue() {
 	<div class="modal-header">
 		<a class="close" data-dismiss="modal">&times;</a>
 
-		<h3><?php _e( 'Feedback', 'pressbooks' ); ?></h3>
+		<h3><?php _e( 'Support', 'pressbooks' ); ?></h3>
 	</div>
 	<div class="modal-body">
-		<p>Do you have questions, feedback or comments? You can visit our
-		<a href="http://forum.pressbooks.com/" target="_blank">User Forum</a> (sorry, you will have to register there again), or send us an email at
-		<a href="mailto:support@pressbooks.com">support@pressbooks.com</a></p>
+		<p>If you're having any technical issues, pease submitt a ticket to
+		<a href="https://mobiapp121.com/support/" target="_blank">Support</a> For any other enquiries or requests send us an email at
+		<a href="mailto:support@mobiapp121.com">support@mobiapp121.com</a></p>
 	</div>
 	<div class="modal-footer">
 		<a href="#" class="btn" data-dismiss="modal"><?php _e( 'Close', 'pressbooks' ); ?></a>
 	</div>
 </div>
-<a class="admin-feedback-btn" href="#myModal" data-toggle="modal"><?php _e( 'Feedback', 'pressbooks' ); ?></a>
+<a class="admin-feedback-btn" href="#myModal" data-toggle="modal"><?php _e( 'Support', 'pressbooks' ); ?></a>
 <?php
 }
 
@@ -58,7 +58,7 @@ function add_feedback_dialogue() {
  * Replaces 'WordPress' with 'PressBooks' in titles of admin pages.
  */
 function admin_title( $admin_title ) {
-	$title = str_replace( 'WordPress', 'PressBooks', $admin_title );
+	$title = str_replace( 'WordPress', 'MobiApp121', $admin_title );
 	return $title;
 }
 
@@ -96,7 +96,7 @@ function replace_book_admin_menu() {
 	remove_menu_page( "edit.php?post_type=metadata" );
 	remove_menu_page( "link-manager.php" );
 	remove_menu_page( "edit.php?post_type=page" );
-	add_theme_page( __( 'Theme Options', 'pressbooks' ), __( 'Theme Options', 'pressbooks' ), 'edit_theme_options', 'pressbooks_theme_options', 'pressbooks_theme_options_display' );
+	add_theme_page( __( 'Book Options', 'pressbooks' ), __( 'Book Options', 'pressbooks' ), 'edit_theme_options', 'pressbooks_theme_options', 'pressbooks_theme_options_display' );
 	if ( ! current_user_can( 'import' ) || ! function_exists( 'register_pressbooks_import_page' ) ) {
 		remove_menu_page( "tools.php" );
 	}
@@ -247,9 +247,9 @@ function replace_menu_bar_branding( $wp_admin_bar ) {
 	$wp_admin_bar->add_menu( array(
 		'id' => 'wp-logo',
 		'title' => '<span class="ab-icon"></span>',
-		'href' => ( 'http://pressbooks.com/about' ),
+		'href' => ( 'https://mobiapp121.com/about' ),
 		'meta' => array(
-			'title' => __( 'About PressBooks', 'pressbooks' ),
+			'title' => __( 'About MobiApp121', 'pressbooks' ),
 		),
 	) );
 
@@ -258,8 +258,8 @@ function replace_menu_bar_branding( $wp_admin_bar ) {
 		$wp_admin_bar->add_menu( array(
 			'parent' => 'wp-logo',
 			'id' => 'about',
-			'title' => __( 'About PressBooks', 'pressbooks' ),
-			'href' => 'http://pressbooks.com/about',
+			'title' => __( 'About MobiApp121', 'pressbooks' ),
+			'href' => 'https://mobiapp121.com/services/',
 		) );
 	}
 
@@ -267,16 +267,16 @@ function replace_menu_bar_branding( $wp_admin_bar ) {
 	$wp_admin_bar->add_menu( array(
 		'parent' => 'wp-logo-external',
 		'id' => 'wporg',
-		'title' => __( 'PressBooks.com', 'pressbooks' ),
-		'href' => 'http://pressbooks.com',
+		'title' => __( 'MobiApp121.com', 'pressbooks' ),
+		'href' => 'https://mobiapp121.com/',
 	) );
 
 	// Add forums link
 	$wp_admin_bar->add_menu( array(
 		'parent' => 'wp-logo-external',
 		'id' => 'support-forums',
-		'title' => __( 'Support Forums', 'pressbooks' ),
-		'href' => 'http://forum.pressbooks.com',
+		'title' => __( 'Support', 'pressbooks' ),
+		'href' => 'https://mobiapp121.com/support/',
 	) );
 
 	// Add feedback link
@@ -284,7 +284,7 @@ function replace_menu_bar_branding( $wp_admin_bar ) {
 		'parent' => 'wp-logo-external',
 		'id' => 'contact',
 		'title' => __( 'Contact', 'pressbooks' ),
-		'href' => 'http://pressbooks.com/contact',
+		'href' => 'https://mobiapp121.com/contact-us/',
 	) );
 }
 
@@ -306,19 +306,28 @@ function replace_menu_bar_my_sites( $wp_admin_bar ) {
 		return;
 
 	$wp_admin_bar->add_menu( array(
-		'id' => 'my-sites',
+		'id' => 'my-books',
 		'title' => __( 'My Books', 'pressbooks' ),
 		'href' => admin_url( 'my-sites.php' ),
 	) );
+	
+	$wp_admin_bar->add_node( array(
+		'parent' => 'my-books',
+		'id' => 'add-new-book',
+		'title' => __( 'Add A New Book', 'pressbooks' ),
+		'href' => network_home_url('wp-signup.php'),
+	) );
+	
 
 	if ( is_super_admin() ) {
+	
 		$wp_admin_bar->add_group( array(
-			'parent' => 'my-sites',
-			'id' => 'my-sites-super-admin',
+			'parent' => 'my-books',
+			'id' => 'my-books-super-admin',
 		) );
 
 		$wp_admin_bar->add_menu( array(
-			'parent' => 'my-sites-super-admin',
+			'parent' => 'my-books-super-admin',
 			'id' => 'network-admin',
 			'title' => __( 'Network Admin', 'pressbooks' ),
 			'href' => network_admin_url(),
@@ -352,8 +361,8 @@ function replace_menu_bar_my_sites( $wp_admin_bar ) {
 
 	// Add site links
 	$wp_admin_bar->add_group( array(
-		'parent' => 'my-sites',
-		'id' => 'my-sites-list',
+		'parent' => 'my-books',
+		'id' => 'my-books-list',
 		'meta' => array(
 			'class' => is_super_admin() ? 'ab-sub-secondary' : '',
 		),
@@ -368,7 +377,7 @@ function replace_menu_bar_my_sites( $wp_admin_bar ) {
 		$menu_id = 'blog-' . $blog->userblog_id;
 
 		$wp_admin_bar->add_menu( array(
-			'parent' => 'my-sites-list',
+			'parent' => 'my-books-list',
 			'id' => $menu_id,
 			'title' => $blavatar . $blogname,
 			'href' => get_admin_url( $blog->userblog_id ),
@@ -426,16 +435,6 @@ function edit_form_hacks() {
 
 
 /**
- * @param \WP_Customize_Manager $wp_customize
- *
- * @see http://codex.wordpress.org/Plugin_API/Action_Reference/customize_register
- */
-function customize_register( $wp_customize ) {
-	$wp_customize->remove_section( 'static_front_page' );
-}
-
-
-/**
  * Default selections for checkboxes created by custom_metadata class.
  */
 function default_meta_checkboxes() {
@@ -459,9 +458,9 @@ function transform_category_selection_box() {
 
 	$base = get_bloginfo( 'url' );
 
-	if ( 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] == ( $base . '/wp-admin/post-new.php?post_type=front-matter' ) ) {
+	if ( 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] == ( $base . '/wp-admin/post-new.php?post_type=front-matter' ) ) {
 		$term = get_term_by( 'slug', 'miscellaneous', 'front-matter-type' );
-	} elseif ( 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] == ( $base . '/wp-admin/post-new.php?post_type=back-matter' ) ) {
+	} elseif ( 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] == ( $base . '/wp-admin/post-new.php?post_type=back-matter' ) ) {
 		$term = get_term_by( 'slug', 'miscellaneous', 'back-matter-type' );
 	}
 
@@ -648,7 +647,7 @@ function ecomm_settings_init() {
 	);
 	add_settings_field(
 		'oreilly',
-		__( 'Oreilly URL', 'pressbooks' ),
+		__( 'Google Play URL', 'pressbooks' ),
 		__NAMESPACE__ . '\ecomm_oreilly_callback',
 		'ecomm_settings',
 		'ecomm_settings_section'
@@ -716,7 +715,7 @@ function ecomm_amazon_callback( $args ) {
  */
 function ecomm_oreilly_callback( $args ) {
 	$options = get_option('pressbooks_ecommerce_links');
-	$html = '<input type="text" id="oreilly" name="pressbooks_ecommerce_links[oreilly]" value="' . sanitize_text_field(@$options['oreilly']) . '" />';
+	$html = '<input type="text" id="google" name="pressbooks_ecommerce_links[google]" value="' . sanitize_text_field(@$options['google']) . '" />';
 	echo $html;
 }
 
@@ -853,7 +852,7 @@ function advanced_email_validation_logs_callback( $args ) {
 	if ( $email_validation_logs ) $html .= 'checked="checked" ';
 	$html .= '/>';
 	$html .= '<label for="no-validation-logs"> ' . __( 'Yes. Send the logs.', 'pressbooks' ) . '</label>';
-	$html .= '<br /><br /><em> ' . __( 'Note: validation error reports (for EPUB, Mobi, and PDF) are technical, and will require some effort to decipher. Unfortunately we cannot provide support for deciphering validation errors, but you could post errors on the <a href="http://forum.pressbooks.com/" target="_blank">PressBooks forum</a>, where we and other PressBooks users can help out as time permits. .', 'pressbooks' ) . '</em>';
+	$html .= '<br /><br /><em> ' . __( 'Note: validation error reports (for EPUB, Mobi, and PDF) are technical, and will require some effort to decipher. If you are reaching final publication and see errors, submitt a <a href="https://mobiapp121.com/support/" target="_blank">Support Ticket</a>. .', 'pressbooks' ) . '</em>';
 
 	$html .= '</p>';
 
