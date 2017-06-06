@@ -1,7 +1,7 @@
 === PressBooks for MobiApp121 Publishing ===
 
 Contributors: PressBooks <code@pressbooks.org>, MobiApp121 <info@mobiapp121.com>
-Version: 3.0.3
+Version: 2.0.3
 Tags: ebooks, publishing, webbooks
 Requires at least: WordPress 3.6
 Tested up to: WordPress 3.6
@@ -28,18 +28,19 @@ Contributors should watch [Google Tech Talks: How Open Source Projects Survive..
 IMPORTANT!
 
  * Do not install PressBooks on an existing WordPress blog -- create a new WordPress install instead.
- * PressBooks works with PHP 5.6.x and WordPress 3.6 Lower versions are not supported.
- * This configuration is designed specifically to work in conjunction with several tested plugins:
+ * PressBooks for MobiApp121 Publishing is very old but very stable and produces excellent outputs
+ * It works with PHP 5.6.x and WordPress 3.6 only. Lower or higher versions are not supported.
+ * This configuration is designed specifically to work in conjunction with several tested - current as of 6/6/2017 - plugins:
  1 [WP-Quicklatex](https://en-gb.wordpress.org/plugins/wp-quicklatex/) + WP Super Cache, important for Latex.
  2 [MCE Table Buttons](https://wordpress.org/plugins/mce-table-buttons/), for tables.
  3 [Tiny MCE Spellcheck](https://wordpress.org/plugins/tinymce-spellcheck/), for inline proofing.
- 4 [Disable All WP Updates](https://wordpress.org/plugins/disable-wordpress-updates/) security and nag prevention.
+ 4 [Disable All WP Updates](https://wordpress.org/plugins/disable-wordpress-updates/) security against fatal plugin updates and nag prevention.
  5 Install reliable Malware/Firewall/Virus protection, especially with this older install.
 
 
  VERY IMPORTANT! 
 
-  This version contains custom links,icons and urls through-out to MobiApp12. You will need to look closely at all headers and footers, assets in each theme, export and particularly pb-admin-laf.php, in the admin folder, to customize your own. You are probably best advised to use the PressBooks up to date plugin - You have been warned!
+  This version contains custom links,icons and urls THROUGH-OUT, specific to MobiApp12 Publishing. You will need to look closely at all headers and footers, assets in each theme, export and particularly pb-admin-laf.php, in the admin folder, to customize your own. Do NOT change plugin references to 'pressbooks', only text custom text and urls. We probably should have built child themes for every theme, which is what we're doing with our new platform and maybe one way this version could be useful to you. You are probably best advised with so much work, for what is after-all very old software, to use the PressBooks up to date plugins - You have been warned!
 
 *Part 1, WordPress generic:*
 
