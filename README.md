@@ -29,6 +29,7 @@ Important!
  * Do ___NOT___ use PressBooks with an existing WordPress site. 
  * Please use with a ___FRESH___ install of WP ___MULTISITE___.
  * If this makes you nervous, please use the free site: [PressBooks](http://pressbooks.com), or contact us.
+ * Please consult the readme.txt for important custom installation changes to PressBooks-
  * This configuration is designed specifically to work in conjunction with several tested plugins:
  1 [WP-Quicklatex](https://en-gb.wordpress.org/plugins/wp-quicklatex/) + WP Super Cache, important for Latex.
  2 [MCE Table Buttons](https://wordpress.org/plugins/mce-table-buttons/), for tables.
