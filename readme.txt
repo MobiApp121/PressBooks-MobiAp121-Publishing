@@ -1,10 +1,10 @@
-=== PressBooks ===
+=== PressBooks for MobiApp121 Publishing ===
 
-Contributors: PressBooks <code@pressbooks.org>
-Version: 2.0.3
+Contributors: PressBooks <code@pressbooks.org>, MobiApp121 <info@mobiapp121.com>
+Version: 3.0.3
 Tags: ebooks, publishing, webbooks
-Requires at least: WordPress 3.5.1
-Tested up to: WordPress 3.5.1
+Requires at least: WordPress 3.6
+Tested up to: WordPress 3.6
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -28,7 +28,18 @@ Contributors should watch [Google Tech Talks: How Open Source Projects Survive..
 IMPORTANT!
 
  * Do not install PressBooks on an existing WordPress blog -- create a new WordPress install instead.
- * PressBooks works with PHP 5.4.x and WordPress 3.5.1. Lower versions are not supported.
+ * PressBooks works with PHP 5.6.x and WordPress 3.6 Lower versions are not supported.
+ * This configuration is designed specifically to work in conjunction with several tested plugins:
+ 1 [WP-Quicklatex](https://en-gb.wordpress.org/plugins/wp-quicklatex/) + WP Super Cache, important for Latex.
+ 2 [MCE Table Buttons](https://wordpress.org/plugins/mce-table-buttons/), for tables.
+ 3 [Tiny MCE Spellcheck](https://wordpress.org/plugins/tinymce-spellcheck/), for inline proofing.
+ 4 [Disable All WP Updates](https://wordpress.org/plugins/disable-wordpress-updates/) security and nag prevention.
+ 5 Install reliable Malware/Firewall/Virus protection, especially with this older install.
+
+
+ VERY IMPORTANT! 
+
+  This version contains custom links,icons and urls through-out to MobiApp12. You will need to look closely at all headers and footers, assets in each theme, export and particularly pb-admin-laf.php, in the admin folder, to customize your own. You are probably best advised to use the PressBooks up to date plugin - You have been warned!
 
 *Part 1, WordPress generic:*
 
@@ -44,7 +55,7 @@ IMPORTANT!
 
  5. Complete the steps printed on the screen (i.e. edit your `wp-config.php` and `.htaccess files` with the information provided.)
 
-*Part 2, PressBooks specific:*
+*Part 2, PressBooks for MobiApp121 Publishing specific:*
 
  1. Copy/move PressBooks plugin files to: __PATH_TO_YOUR_SITE__/wp-content/plugins/pressbooks/*.
 
@@ -56,7 +67,8 @@ IMPORTANT!
 
  5. Navigate to: Themes → Installed Themes.
 
- 6. Network Enable "Luther", "Clarke", "Donham", "PressBooks Publisher One", and any other PressBooks theme you want to use.
+ 6. Network Enable "Luther", "Clarke", "Donham", "Fitzgerald", "Austen", "Pressbooks Publisher One", and any other
+    Pressbooks theme you want to use. *IMPORTANT* If any theme doesn't appear, we advise copying ALL themes to the generic Wordpress themes folder and activating as normal. Do not delete them from the PressBooks plugin.
 
  7. Navigate to: Settings → Network Settings.
 
@@ -67,7 +79,7 @@ IMPORTANT!
 
  9. Navigate to: My Books → __YOUR_SITE__ → Dashboard
 
- 10. Navigate to: Appearance. Activate "PressBooks Publisher One"
+ 10. Activate "PressBooks Publisher One"
 
  11. Navigate to: My Books → Network Admin → Sites
 
