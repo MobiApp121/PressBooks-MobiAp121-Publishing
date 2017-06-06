@@ -28,7 +28,7 @@ Important!
 
  * Do ___NOT___ use PressBooks with an existing WordPress site. 
  * Please use with a ___FRESH___ install of WP ___MULTISITE___.
- * If this makes you nervous, please use our free site: [PressBooks](http://pressbooks.com), or contact us.
+ * If this makes you nervous, please use the free site: [PressBooks](http://pressbooks.com), or contact us.
 
 
 Try pressbooks.com
