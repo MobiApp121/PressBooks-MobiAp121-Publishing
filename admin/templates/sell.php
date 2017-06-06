@@ -14,11 +14,11 @@ if ( ! defined( 'ABSPATH' ) )
 	<div class="sell-your-book-copy">
 		<!-- BookBaby -->
 		<p><?php
-		printf( __( 'Would you like to get your book into ebook stores? Our distribution partner, <a href="%s" target="_blank">BookBaby</a>, can help you. ', 'pressbooks' ), 'http://bookbaby.com/pressbooks' );
-		_e( 'For a flat fee starting at $99 (with a 10% discount for PressBooks users and 100% royalties going to you), BookBaby will send your book to the Kindle Store, Barnes & Noble, Apple\'s iBook store, and Kobo.', 'pressbooks' );
+		printf( __( 'Would you like to get your book into ebook stores? MobiApp121 <a href="%s" target="_blank">Publishing</a>, can help you. ', 'pressbooks' ), 'http://mobiapp121.com/publishing/getstarted' );
+		_e( 'For a flat fee starting at &#8364;99 (with 100% royalties going to you), MobiApp121 will Publish your book for you, including Free ISBN numbers, to the Kindle Store, Barnes & Noble, Apple\'s iBook store, and Kobo. Ask about our other Publishing and Design services too!', 'pressbooks' );
 		?></p>
-		<a href=" http://bookbaby.com/pressbooks" class="button" target="_blank"><?php _e( 'Distribute with BookBaby', 'pressbooks' ); ?></a>
-		<p><?php _e( 'Once your books are available, you can add the links to bookstores below and we will make a Buy page on the web version of your PressBooks book.', 'pressbooks' ); ?></p>
+		<a href="http://mobiapp121.com/publishing/services" class="button" target="_blank"><?php _e( 'Distribute with MobiApp121', 'pressbooks' ); ?></a>
+		<p><?php _e( 'Once your books are available, you can add the links to bookstores below and we will make a Buy page on the web version of your MobiApp121 book.', 'pressbooks' ); ?></p>
 	</div>
 
 	<!-- Create the form that will be used to render our options -->
