@@ -11,11 +11,11 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
-PressBooks is an open source book publishing tool built on a WordPress multisite platform. PressBooks outputs books in multiple formats, including PDF EPUB/MOBI, web, and a variety of XML flavours, using a theming/templating system, driven by CSS. For more information, visit http://pressbooks.com.
+PressBooks for MobiApp121 Publishing is a publishing tool, customized by and for [MobiApp121 Publishing](https://www.mobiapp121.com)  based on a WordPress multisite platform and the open source PressBooks plugin. PressBooks outputs books in multiple formats, including PDF EPUB/MOBI, web, and a variety of XML flavours, using a theming/templating system, driven by CSS. For more information, visit http://pressbooks.com.
 
-== Communication ==
+== Contact ==
 
-Our main communication channels are [Google Code](http://code.google.com/p/pressbooks) and [Google Groups](http://groups.google.com/group/pressbooks).
+You can contact us at [MobiApp121 Publishing](https://www.mobiapp121.com) or by sending an email to <info@mobiapp121.com>. We are available for hire, to install a custom version, including from the latest code and other publishing platforms for books or magazines. 
 
 == Contributors ==
 
@@ -40,7 +40,7 @@ IMPORTANT!
 
  VERY IMPORTANT! 
 
-  This version contains custom links,icons and urls THROUGH-OUT, specific to MobiApp12 Publishing. You will need to look closely at all headers and footers, assets in each theme, export and particularly pb-admin-laf.php, in the admin folder, to customize your own. Do NOT change plugin references to 'pressbooks', only text custom text and urls. We probably should have built child themes for every theme, which is what we're doing with our new platform and maybe one way this version could be useful to you. You are probably best advised with so much work, for what is after-all very old software, to use the PressBooks up to date plugins - You have been warned!
+This version contains custom links,icons and urls THROUGH-OUT, specific to MobiApp12 Publishing. You will need to look closely at all headers and footers, assets in each theme, export and particularly pb-admin-laf.php, in the admin folder, to customize your own. Do NOT change plugin references to 'pressbooks', only text custom text and urls. We probably should have built child themes for every theme, which is what we're doing with our new platform and maybe one way this version could be useful to you. You are probably best advised with so much work, for what is after-all very old software, to use the PressBooks up to date plugins - You have been warned!
 
 *Part 1, WordPress generic:*
 
@@ -69,7 +69,7 @@ IMPORTANT!
  5. Navigate to: Themes → Installed Themes.
 
  6. Network Enable "Luther", "Clarke", "Donham", "Fitzgerald", "Austen", "Pressbooks Publisher One", and any other
-    Pressbooks theme you want to use. *IMPORTANT* If any theme doesn't appear, we advise copying ALL themes to the generic Wordpress themes folder and activating as normal. Do not delete them from the PressBooks plugin.
+    Pressbooks theme you want to use. *IMPORTANT* If any theme doesn't appear, we advise copying ALL themes to the generic Wordpress 	themes folder and activating as normal. Do not delete them from the PressBooks plugin.
 
  7. Navigate to: Settings → Network Settings.
 
