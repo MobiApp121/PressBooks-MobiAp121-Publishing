@@ -40,7 +40,7 @@ IMPORTANT!
 
  VERY IMPORTANT! 
 
-This version contains custom links,icons and urls THROUGH-OUT, specific to MobiApp12 Publishing. You will need to look closely at all headers and footers, assets in each theme, export and particularly pb-admin-laf.php, in the admin folder, to customize your own. Do NOT change plugin references to 'pressbooks', only text custom text and urls. We probably should have built child themes for every theme, which is what we're doing with our new platform and maybe one way this version could be useful to you. You are probably best advised with so much work, for what is after-all very old software, to use the PressBooks up to date plugins - You have been warned!
+This version contains custom links,icons and urls THROUGH-OUT, specific to MobiApp121 Publishing. You will need to look closely at all headers and footers, assets in each theme, export and particularly pb-admin-laf.php, in the admin folder, to customize your own. Do NOT change plugin references to 'pressbooks', only text custom text and urls. We probably should have built child themes for every theme, which is what we're doing with our new platform and maybe one way this version could be useful to you. You are probably best advised with so much work, for what is after-all very old software, to use the PressBooks up to date plugins - You have been warned!
 
 *Part 1, WordPress generic:*
 
