@@ -26,7 +26,7 @@ Mobiapp121 uses the watermarked free version of Prince for internal Pre-Press ch
 Important!
 ----------
 
- * Do ___NOT___ use PressBooks with an existing WordPress site. 
+ * Do ___NOT___ use PressBooks for MobiAp121 Publishing with an existing WordPress site. 
  * Please use with a ___FRESH___ install of WP ___MULTISITE___.
  * If this makes you nervous, please use the free site: [PressBooks](http://pressbooks.com), or contact us.
  * Please consult the readme.txt for important custom installation changes to PressBooks.
