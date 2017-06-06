@@ -20,7 +20,7 @@ Their web/ebook and [PDF][] exports are all driven by HTML+CSS. XML outputs have
 
   [PDF]: http://pressbooks.com/prince        "Note: they use the non-free software Prince XML for PDF export."
   
-Mobiapp121 uses the watermarked free version of Prince for internal Pre-Press checking only we then produce the final proof for print via the methods outlined above. There is [mPDF for PressBooks](https://github.com/pressbooks/pressbooks-mpdf) as a free opensource alternative. We find it doesn't parse CSS/fonts very well, though it is the current best alternative. We recommend to use Prince as outlined or you can obtain a [commercial licence](https://www.princexml.com/).
+Mobiapp121 uses the watermarked free version of Prince for internal Pre-Press checking only; we then produce the final proof for print via the methods outlined above. There is [mPDF for PressBooks](https://github.com/pressbooks/pressbooks-mpdf) as a free opensource alternative. We find it doesn't parse CSS/fonts very well, though it is the current best alternative. We recommend to use Prince as outlined or you can obtain a [commercial licence](https://www.princexml.com/).
 
 
 Important!
