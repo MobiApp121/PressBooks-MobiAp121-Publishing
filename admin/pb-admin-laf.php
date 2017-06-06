@@ -247,7 +247,7 @@ function replace_menu_bar_branding( $wp_admin_bar ) {
 	$wp_admin_bar->add_menu( array(
 		'id' => 'wp-logo',
 		'title' => '<span class="ab-icon"></span>',
-		'href' => ( 'https://mobiapp121.com/about' ),
+		'href' => ( 'https://mobiapp121.com/services' ),
 		'meta' => array(
 			'title' => __( 'About MobiApp121', 'pressbooks' ),
 		),
